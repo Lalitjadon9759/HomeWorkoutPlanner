@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+   <style>
+      body{
+        margin: 0px;
+        padding: 0px;
+        background-color: aqua;
+         background-color: aqua;
+        background-image: url('https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg');
+        background-size: cover;       
+      background-repeat: no-repeat; 
+         
+      }
+       
+      #login-container{
+        width: 300px;
+        height: 350px;
+        text-align: center;
+        margin-top: 5%;
+        margin-left: 35%;
+        padding: 20px;
+        backdrop-filter: blur(40px);
+      }
+       
+   
+        input{
+        margin: 10px;
+        padding: 5px;
+        background-color: rgb(215, 233, 236);  
+        color:black;           
+        border: none;            
+        padding: 10px;   
+
+        
+      }
+       button  {
+       font-size: 5pxpx;     
+       padding: 5px 10px;
+       border-radius: 8px;  
+       color:white;
+       background-color: blue;
+      }
+      a{
+        color: blue;
+      }
+      p{
+        color: rgb(231, 39, 39);
+      }
+  marquee{
+        font-size: x-large;
+        color: blue;
+         word-spacing: 30px;
+         font-weight: bold;
+      }
+       h1{
+      margin-left: 15%;
+      color: rgb(20, 20, 75);
+    }
+    </style>
+</head>
+<body>
+   <h1>Your Fitness Journey Starts Here – Join & Transform Today!</h1>
+    <div id="login-container">
+        <h2>LogIn</h2>
+        <input type="email" id="email-login" placeholder="email">
+        <input type="password" id="password-login" placeholder="password">
+        <br><button id="login-btn">LogIn</button>
+        <br><p id="login-message"></p>
+         Don't have an account? <a href="signup.html">Sign Up</a>
+    </div>
+</body>
+</html>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js";
+  import { getAuth,
+           createUserWithEmailAndPassword,
+           signInWithEmailAndPassword,
+           signOut,
+           onAuthStateChanged
+        }  from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA8nWsTxrjYzPKrpFMOlO0htrAJmE5nyh4",
+    authDomain: "feedback-dd3b4.firebaseapp.com",
+    projectId: "feedback-dd3b4",
+    storageBucket: "feedback-dd3b4.firebasestorage.app",
+    messagingSenderId: "210519429058",
+    appId: "1:210519429058:web:83ce43b700961d3de7105b",
+    measurementId: "G-QGYZMYVJSF"
+  };
+
+  
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  let auth=getAuth(app); 
+
+ 
+
+   document.getElementById('login-btn').addEventListener("click",()=>{
+    let email=document.getElementById("email-login").value;
+    let password=document.getElementById("password-login").value;
+
+    signInWithEmailAndPassword(auth,email,password)
+    .then((userCredentials)=>{
+        document.getElementById("login-message").innerText="login successful"
+    
+       window.location.href = "index.html";
+
+    })
+    .catch((error)=>{
+        document.getElementById("login-message").innerText=error.message;
+
+    })
+    document.getElementById("email-login").value=""
+    document.getElementById("password-login").value=""
+  })
+
+
+   document.getElementById('logout-btn').addEventListener('click',()=>{
+    signOut(auth)
+    .then(()=>{
+        alert('logout successfully')
+    }).catch((error)=>{
+         document.getElementById("logout-message").innerText="go to sign up page to enter in this website";
+
+    })
+   })
+   
+
+
+   
+</script>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+        margin: 0px;
+        padding: 0px;
+        background-color: aqua;
+       
+         background: url('https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg');
+        background-size: cover;       
+      background-repeat: no-repeat; 
+  
+         }
+     
+      .signup-container{
+        width: 300px;
+        height: 350px;
+        text-align: center;
+        margin-top: 8%;
+        margin-left: 33%;
+        padding: 20px;
+      
+        backdrop-filter: blur(60px);
+      }
+        
+   
+
+      input{
+        margin: 10px;
+        padding: 5px;
+        border: solid black;
+        background-color: rgb(215, 233, 236);  
+        color:black;           
+        border: none;            
+        padding: 10px;   
+
+        
+      }
+       button  {
+       font-size: 5pxpx;     
+       padding: 5px 10px;
+       border-radius: 8px;  
+       color:white;
+       background-color: blue;
+      }
+
+      a{
+        color: blue;
+      }
+      p{
+        color: rgb(231, 39, 39);
+      }
+      marquee{
+        font-size: x-large;
+        color: rgb(81, 226, 252);
+         word-spacing: 30px;
+         font-weight: bold;
+      }
+    h1{
+      margin-left: 15%;
+      color: rgb(20, 20, 75);
+    }
+    </style>
+</head>
+<body>
+   <h1>Your Fitness Journey Starts Here – Join & Transform Today!</h1>
+    <div id="signup-container" class="signup-container">
+        <h2>sign up</h2>
+        <input type="email" id="email-signup" placeholder="email">
+        <input type="password" id="password-signup" placeholder="password">
+        <br><button id="signup-btn">sign up</button>
+        <br><p id="signup-message"></p>
+      If Already have an account? <a href="login.html">Login</a>
+    </div>
+</body>
+</html>
+     <script type="module">
+// Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js";
+  import { getAuth,
+           createUserWithEmailAndPassword,
+           signInWithEmailAndPassword,
+           signOut,
+           onAuthStateChanged
+        }  from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA8nWsTxrjYzPKrpFMOlO0htrAJmE5nyh4",
+    authDomain: "feedback-dd3b4.firebaseapp.com",
+    projectId: "feedback-dd3b4",
+    storageBucket: "feedback-dd3b4.firebasestorage.app",
+    messagingSenderId: "210519429058",
+    appId: "1:210519429058:web:83ce43b700961d3de7105b",
+    measurementId: "G-QGYZMYVJSF"
+  };
+
+  
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  let auth=getAuth(app); 
+
+  document.getElementById('signup-btn').addEventListener("click",()=>{
+    let email=document.getElementById("email-signup").value;
+    let password=document.getElementById("password-signup").value;
+
+    createUserWithEmailAndPassword(auth,email,password)
+    .then((userCredentials)=>{
+        document.getElementById("signup-message").innerText="signup successful"
+               window.location.href = "login.html";
+
+    })
+    .catch((error)=>{
+        document.getElementById("signup-message").innerText="you have already sign up";
+    })
+    document.getElementById("email-signup").value=""
+    document.getElementById("password-signup").value=""
+  })
+
+   
+</script>

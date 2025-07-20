@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interval Timer - HIIT/Tabata</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #2c3e50, #4ca1af);
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 100px;
+      border: none;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin: 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      background-color: #27ae60;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #219150;
+    }
+
+    .timer-display {
+      font-size: 3em;
+      margin: 20px 0;
+    }
+
+    .status {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Workout Timer</h1>
+
+    <div>
+      <label>Work (sec):</label>
+      <input type="number" id="workTime" value="30" min="5" />
+    </div>
+
+    <div>
+      <label>Rest (sec):</label>
+      <input type="number" id="restTime" value="15" min="5" />
+    </div>
+
+    <div>
+      <label>Rounds:</label>
+      <input type="number" id="rounds" value="5" min="1" />
+    </div>
+
+    <div class="status" id="status">Ready</div>
+    <div class="timer-display" id="timer">00:00</div>
+    <div>Round: <span id="roundDisplay">0</span></div>
+
+    <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()">Reset</button>
+
+    <audio id="beep">
+      <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+    </audio>
+  </div>
+
+  <script>
+    let workTime, restTime, totalRounds;
+    let currentRound = 0;
+    let isWorking = true;
+    let interval;
+    let remainingTime = 0;
+    let isPaused = false;
+
+    const statusEl = document.getElementById("status");
+    const timerEl = document.getElementById("timer");
+    const roundEl = document.getElementById("roundDisplay");
+    const beep = document.getElementById("beep");
+
+    function formatTime(seconds) {
+      const min = String(Math.floor(seconds / 60)).padStart(2, "0");
+      const sec = String(seconds % 60).padStart(2, "0");
+      return `${min}:${sec}`;
+    }
+
+    function startTimer() {
+      if (!interval || isPaused) {
+        if (isPaused) {
+          isPaused = false;
+        } else {
+          workTime = parseInt(document.getElementById("workTime").value);
+          restTime = parseInt(document.getElementById("restTime").value);
+          totalRounds = parseInt(document.getElementById("rounds").value);
+          currentRound = 1;
+          isWorking = true;
+          remainingTime = workTime;
+          updateDisplay();
+        }
+
+        interval = setInterval(() => {
+          if (remainingTime > 0) {
+            remainingTime--;
+            updateDisplay();
+          } else {
+            beep.play();
+            if (isWorking) {
+              isWorking = false;
+              remainingTime = restTime;
+              statusEl.innerText = "Rest";
+            } else {
+              currentRound++;
+              if (currentRound > totalRounds) {
+                clearInterval(interval);
+                statusEl.innerText = "Done!";
+                timerEl.innerText = "00:00";
+                roundEl.innerText = totalRounds;
+                return;
+              }
+              isWorking = true;
+              remainingTime = workTime;
+              statusEl.innerText = "Work!";
+            }
+            updateDisplay();
+          }
+        }, 1000);
+      }
+    }
+
+    function updateDisplay() {
+      timerEl.innerText = formatTime(remainingTime);
+      statusEl.innerText = isWorking ? "Work!" : "Rest";
+      roundEl.innerText = currentRound;
+    }
+
+    function pauseTimer() {
+      if (interval) {
+        clearInterval(interval);
+        interval = null;
+        isPaused = true;
+        statusEl.innerText += " (Paused)";
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(interval);
+      interval = null;
+      isPaused = false;
+      currentRound = 0;
+      remainingTime = 0;
+      timerEl.innerText = "00:00";
+      statusEl.innerText = "Ready";
+      roundEl.innerText = "0";
+    }
+  </script>
+</body>
+</html>

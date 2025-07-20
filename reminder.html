@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exercise and Stretching Reminders</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #2c3e50, #4ca1af);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #27ae60;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .reminder {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-left: 5px solid #00ffae;
+      border-radius: 8px;
+    }
+
+    .net-status {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ff4d4d;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      display: none;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .online {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Daily Exercise & Stretching Reminder</h1>
+
+    <label for="workoutTime">Preferred Workout Time:</label>
+    <input type="time" id="workoutTime" />
+
+    <label for="stretchBefore">Stretch Before Exercise?</label>
+    <select id="stretchBefore">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+
+    <label for="stretchAfter">Stretch After Exercise?</label>
+    <select id="stretchAfter">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+
+    <button onclick="setReminder()">Set Reminder</button>
+
+    <div id="reminderMessage" class="reminder" style="display:none;"></div>
+
+    <audio id="reminderSound">
+      <source src="do_it_now_reminder.mp3" type="audio/ogg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <div id="networkStatus" class="net-status"></div>
+
+  <script>
+    function setReminder() {
+      const time = document.getElementById("workoutTime").value;
+      const stretchBefore = document.getElementById("stretchBefore").value === "yes";
+      const stretchAfter = document.getElementById("stretchAfter").value === "yes";
+
+      const messageBox = document.getElementById("reminderMessage");
+      const sound = document.getElementById("reminderSound");
+
+      if (!time) {
+        alert("Please set a workout time.");
+        return;
+      }
+
+      let message = `🕒 Your daily workout is scheduled at ${time}.`;
+
+      if (stretchBefore) {
+        message += `<br>🧘 Remember to stretch <strong>before</strong> your workout.`;
+      }
+
+      if (stretchAfter) {
+        message += `<br>🧘 Don't forget to stretch <strong>after</strong> your workout.`;
+      }
+
+      message += `<br>✅ Stay consistent, Daniel!`;
+
+      messageBox.innerHTML = message;
+      messageBox.style.display = "block";
+
+      sound.play();
+    }
+
+    const statusDiv = document.getElementById('networkStatus');
+
+    function showStatus(isOnline) {
+      statusDiv.textContent = isOnline ? "✅ You are back online!" : "⚠️ You are offline!";
+      statusDiv.classList.toggle("online", isOnline);
+      statusDiv.style.display = "block";
+
+      setTimeout(() => {
+        statusDiv.style.display = "none";
+      }, 3000);
+    }
+
+    window.addEventListener('online', () => showStatus(true));
+    window.addEventListener('offline', () => showStatus(false));
+
+  
+    window.addEventListener('load', () => {
+      if (!navigator.onLine) {
+        showStatus(false);
+      }
+    });
+  </script>
+</body>
+</html>

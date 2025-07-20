@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+   
+    header {
+      padding: 20px 40px;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    header button {
+      background-color: #00b894;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    header button:hover {
+      background-color: #019875;
+    }
+
+    body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fitness {
+    max-width: 1100px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+  }
+
+  .fitness h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+
+  .fitness p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .fitness ul {
+    text-align: left;
+    padding-left: 20px;
+    list-style: none;
+    margin-bottom: 30px;
+  }
+
+  .fitness ul li {
+    margin: 10px 0;
+    font-size: 1.05rem;
+    padding-left: 1.2em;
+    position: relative;
+  }
+
+  .fitness ul li::before {
+    content: '🔥';
+    position: absolute;
+    left: 0;
+  }
+
+  .fitness button {
+    width: 250px;
+    background-color: #ffffff;
+    color: #2c3e50;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .fitness button:hover {
+    background-color: #f1c40f;
+    color: #f1f2f3;
+  }
+
+  .motivation {
+    font-style: italic;
+    margin-top: 20px;
+    color: #f9e79f;
+  }
+
+    @media (max-width: 768px) {
+      .fitness h2 {
+        font-size: 2rem;
+      }
+      .feature-box {
+        width: 90%;
+      }
+    }
+     section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      width: 300px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      background-color: #fff;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background-color: #eee;
+    }
+
+    .card button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #44607c;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .card button:hover {
+      background-color: #003fb3;
+    }
+    .footer {
+  background: linear-gradient(to right, #1f1f1f, #2c3e50);
+  color: #ccc;
+  padding: 40px 20px 20px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  margin: 20px;
+}
+
+.footer-section h3 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.footer-section p, .footer-section li, .footer-section a {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 10px;
+  font-size: 13px;
+  color: #aaa;
+}
+  </style>
+  
+</head>
+<body>
+  
+  <header>
+    <h1>🏋️ Home Workout Planner</h1>
+   <div id="logout-container">
+        <h3><span id="user-email"></span></h3>
+        <button id="logout-btn">LogOut</button>
+    </div>
+  </header>
+
+<section class="fitness">
+  <h2>One More Step to Fitness!</h2>
+  <p>Personalized home workouts, real-time progress tracking, and balanced meal suggestions — everything you need to reach your goals, all in one place.</p>
+
+  <ul>
+    <li>✅ Custom workout plans tailored to your fitness level and goals</li>
+    <li>📈 Track your daily, weekly, and monthly progress with ease</li>
+    <li>🥗 Get healthy and delicious meal ideas for every diet type</li>
+    <li>🎯 Set fitness milestones and stay motivated with smart reminders</li>
+    <li>📹 Access video tutorials for proper form and injury prevention</li>
+    <li>📅 Integrated calendar to schedule your workouts and rest days</li>
+    <li>🧠 Mindfulness tips to boost your mental strength along the way</li>
+  </ul>
+
+  <p>Whether you're just starting or looking to level up your routine, we've got you covered. No fancy equipment needed — just your commitment and our guidance.</p>
+
+  
+
+  <p class="motivation">"Push yourself because no one else is going to do it for you."</p>
+
+  
+</section>
+
+<section class="fitness">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1" alt="Tutorials">
+    <a href="customizableworkout.html"><button>Customizable Workout</button></a>
+  </div>
+
+  <div class="card">
+     <img src="https://images.unsplash.com/photo-1731276221027-e96a7825b43d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0OHx8fGVufDB8fHx8fA%3D%3D" alt="Customizable Workout">
+    <a href="exerciseTimerTracker.html"><button>Time Tracker </button></a>
+  </div>
+
+  <div class="card">
+    <img src="https://tse2.mm.bing.net/th/id/OIP.TnBRgFV_5SYx6cQhpgbBYgHaJp?pid=Api&P=0&h=180" alt="Progress Tracker">
+    <a href="progressandperformancetracker.html"><button>Progress Tracker</button></a>
+  </div>
+
+  <div class="card">
+    <img src="https://tse2.mm.bing.net/th/id/OIP.A8hFC0Rx5r5POvI6cN6pKAHaEN?pid=Api&P=0&h=180" alt="Minimal Equipment">
+    <a href="minimalfreeEquipmentworkout.html"><button>Minimal Equipments</button></a>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=1350&q=80" alt="Reminder">
+    <a href="reminder.html"><button>Reminder</button></a>
+  </div>
+
+  <div class="card">
+     <img src="https://tse2.mm.bing.net/th/id/OIP.P5DwvXfrFIb1jo39f77uXwHaHa?pid=Api&P=0&h=180" alt="Customizable Workout">
+    <a href="videoexercisetutorials.html"><button>Tutorials</button></a>
+  </div>
+</section>
+
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <h3>About FitLife</h3>
+      <p>Your ultimate platform for customized workouts, nutrition tracking, and fitness motivation. Train smart, stay healthy, and track your progress — all in one place.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="customizableworkout.html">Custom Workouts</a></li>
+        <li><a href="videoexercisetutorials.html">Tutorials</a></li>
+        <li><a href="progressandperformancetracker.html">Progress Tracker</a></li>
+        <li><a href="mealNutritinPlanning.html">Meal Plans</a></li>
+        <li><a href="reminder.html">Reminders</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section contact">
+      <h3>Contact</h3>
+      <p>Email: lalitkrthakur2001@gmail.com</p>
+      <p>Phone: 9759430760</p>
+      <p>Location: New Delhi, India</p>
+    </div>
+
+    <div class="footer-section social">
+      <h3>Follow Us</h3>
+      <a href="#" title="Instagram">Instagram</a> |
+      <a href="https://www.youtube.com/" title="YouTube">YouTube</a> |
+      <a href="https://www.facebook.com/profile.php?id=61562467328945" title="Facebook">Facebook</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 FitLife. All rights reserved. | Designed with 💪 by Team FitLife</p>
+  </div>
+</footer>
+
+</body>
+</html>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js";
+  import { getAuth,
+           createUserWithEmailAndPassword,
+           signInWithEmailAndPassword,
+           signOut,
+           onAuthStateChanged
+        }  from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA8nWsTxrjYzPKrpFMOlO0htrAJmE5nyh4",
+    authDomain: "feedback-dd3b4.firebaseapp.com",
+    projectId: "feedback-dd3b4",
+    storageBucket: "feedback-dd3b4.firebasestorage.app",
+    messagingSenderId: "210519429058",
+    appId: "1:210519429058:web:83ce43b700961d3de7105b",
+    measurementId: "G-QGYZMYVJSF"
+  };
+
+  
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+let auth = getAuth(app); 
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("user-email").textContent = user.email;
+  } else {
+      
+    window.location.href = "login.html";
+  }
+});
+
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  signOut(auth)
+    .then(() => {
+      window.location.href = "login.html";
+    })
+    .catch((error) => {
+      console.error("Logout error:", error);
+    });
+});
+
+</script>

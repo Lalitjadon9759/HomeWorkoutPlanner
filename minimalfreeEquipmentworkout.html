@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Workouts</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #2c3e50, #4ca1af);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .workout-section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .workout-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .workout-section p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #ffde59;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .image-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .image-card:hover {
+      transform: scale(1.03);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .image-caption {
+      padding: 15px;
+      font-size: 1rem;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    footer h3 {
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      color: #ffde59;
+    }
+
+    .footer-links {
+      margin: 10px 0;
+    }
+
+    .footer-links a {
+      color: #ffffffcc;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: #ffde59;
+    }
+
+    .footer-social {
+      margin-top: 15px;
+    }
+
+    .footer-social span {
+      margin: 0 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #cccccc;
+    }
+
+    @media (max-width: 600px) {
+      .workout-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .workout-section p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="workout-section">
+    <h2>🏋️‍♀️ Equipment-Free & Minimal Gear Workouts</h2>
+    <p>
+      Whether you're just starting out or prefer the convenience of home workouts, 
+      this planner helps <span class="highlight">Daniel</span> and users like him stay on track with 
+      flexible routines. <br> No equipment? No problem. Just your bodyweight and consistency.
+    </p>
+
+    <div class="image-grid">
+
+      <div class="image-card">
+        <img src="https://images.pexels.com/photos/260352/pexels-photo-260352.jpeg" alt="No Equipment Workout">
+        <div class="image-caption">Bodyweight routines perfect for any room in the house</div>
+      </div>
+
+      <div class="image-card">
+        <img src="https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg" alt="Resistance Band Workout">
+        <div class="image-caption">Add resistance bands for more challenge & flexibility</div>
+      </div>
+
+      <div class="image-card">
+        <img src="https://images.pexels.com/photos/669577/pexels-photo-669577.jpeg" alt="Dumbbell Home Workout">
+        <div class="image-caption">Simple dumbbell sets bring variety to your routine</div>
+      </div>
+
+      <div class="image-card">
+        <img src="https://images.pexels.com/photos/45056/pexels-photo-45056.jpeg" alt="Yoga Mat Stretching">
+        <div class="image-caption">Stretching and yoga enhance recovery and mobility</div>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 50px;">
+      🏠 You don’t need a gym to get fit — just dedication and the right plan. 
+      Our app recommends customized workouts whether you have zero equipment 
+      or a few basics like a <span class="highlight">mat</span>, <span class="highlight">bands</span>, or <span class="highlight">weights</span>. Stay active, stay strong!
+    </p>
+  </section>
+
+  <!-- 🌟 FOOTER SECTION -->
+  <footer>
+    <h3>FitPlanner</h3>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="customizableworkout.html">Plans</a>
+      <a href="weeklyProgress.html">Progress</a>
+      
+    </div>
+    <div class="footer-social">
+      <span>🌐</span>
+      <span>📘</span>
+      <span>🐦</span>
+      <span>📸</span>
+    </div>
+    <div class="footer-bottom">
+      © 2025 FitPlanner. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

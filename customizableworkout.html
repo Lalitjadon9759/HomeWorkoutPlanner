@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Workout Planner</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #2c3e50, #4ca1af);
+      color: white;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3 {
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #f1f5f9;
+    }
+
+    .settings-title {
+      font-size: 1.5rem;
+      margin: 25px 0 15px;
+      color: #e0f2fe;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #e0f7fa;
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    input[type="number"]::placeholder {
+      color: #cbd5e1;
+    }
+
+    select option {
+      background-color: #1e293b;
+      color: white;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      accent-color: #60a5fa;
+    }
+
+    .generate-button {
+      width: 100%;
+      background-color: #1e90ff;
+      color: white;
+      font-size: 1.1rem;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 25px;
+    }
+
+    .generate-button:hover {
+      background-color: #1c7ed6;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: rgba(255,255,255,0.05);
+    }
+
+    th, td {
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px;
+      text-align: left;
+      color: #ffffff;
+    }
+
+    ul {
+      margin-left: 20px;
+      list-style: disc;
+    }
+
+    @media screen and (max-width: 600px) {
+      .checkbox-group {
+        flex-direction: column;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .generate-button {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Home Workout Planner</h1>
+    <p>
+      Get a personalized home workout and meal plan tailored to your fitness level, goals, and lifestyle.
+    </p>
+
+    <h2 class="settings-title">Customize Your Workout Plan</h2>
+
+    <div class="form-group">
+      <label for="fitnessLevel">Fitness Level:</label>
+      <select id="fitnessLevel">
+        <option value="">Select your level</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="workoutDuration">Workout Duration (minutes):</label>
+      <input type="number" id="workoutDuration" min="15" max="90" value="30">
+    </div>
+
+    <div class="form-group">
+      <label for="workoutDays">Workouts Per Week:</label>
+      <select id="workoutDays">
+        <option value="2">2 days/week</option>
+        <option value="3" selected>3 days/week</option>
+        <option value="4">4 days/week</option>
+        <option value="5">5 days/week</option>
+        <option value="6">6 days/week</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="primaryGoal">Primary Goal:</label>
+      <select id="primaryGoal">
+        <option value="Strength">Build Strength</option>
+        <option value="Muscle">Build Muscle</option>
+        <option value="Fat Loss">Lose Fat</option>
+        <option value="Endurance">Improve Endurance</option>
+        <option value="General Fitness">General Fitness</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Target Areas:</label>
+      <div class="checkbox-group" id="targetAreas">
+        <div class="checkbox-item"><input type="checkbox" value="Full Body" checked> Full Body</div>
+        <div class="checkbox-item"><input type="checkbox" value="Upper Body"> Upper Body</div>
+        <div class="checkbox-item"><input type="checkbox" value="Lower Body"> Lower Body</div>
+        <div class="checkbox-item"><input type="checkbox" value="Core"> Core</div>
+        <div class="checkbox-item"><input type="checkbox" value="Cardio"> Cardio</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Available Equipment:</label>
+      <div class="checkbox-group" id="availableEquipment">
+        <div class="checkbox-item"><input type="checkbox" value="None" checked> No Equipment</div>
+        <div class="checkbox-item"><input type="checkbox" value="Resistance Bands"> Resistance Bands</div>
+        <div class="checkbox-item"><input type="checkbox" value="Dumbbells"> Dumbbells</div>
+        <div class="checkbox-item"><input type="checkbox" value="Pull-up Bar"> Pull-up Bar</div>
+        <div class="checkbox-item"><input type="checkbox" value="Yoga Mat"> Yoga Mat</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Health Considerations:</label>
+      <div class="checkbox-group" id="healthConditions">
+        <div class="checkbox-item"><input type="checkbox" value="None" checked> None</div>
+        <div class="checkbox-item"><input type="checkbox" value="Back Pain"> Back Pain</div>
+        <div class="checkbox-item"><input type="checkbox" value="Joint Pain"> Joint Pain</div>
+        <div class="checkbox-item"><input type="checkbox" value="Pregnancy"> Pregnancy</div>
+        <div class="checkbox-item"><input type="checkbox" value="Limited Mobility"> Limited Mobility</div>
+      </div>
+    </div>
+
+    <button id="generateButton" class="generate-button">Generate Workout & Meal Plan</button>
+  </div>
+
+  <div id="workoutPlan" class="container" style="display: none;">
+    <h2>Your Personalized Workout Plan</h2>
+    <div id="planContent" style="margin-top: 20px;"></div>
+  </div>
+
+  <div id="mealPlan" class="container" style="display: none;">
+    <h2>Personalized Meal & Nutrition Plan</h2>
+    <div id="mealContent" style="margin-top: 20px;"></div>
+  </div>
+
+  <div id="tracker" class="container" style="display: none;">
+    <h2>Progress & Performance Tracker</h2>
+    <div id="metrics" style="margin-top: 20px;"></div>
+    <canvas id="progressChart" width="600" height="200" style="margin-top: 20px;"></canvas>
+  </div>
+
+  <script>
+    onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("user-email").textContent = user.email;
+  } else {
+    
+    window.location.href = "login.html";
+  }
+});
+    const generateBtn = document.getElementById("generateButton");
+
+    generateBtn.addEventListener("click", function () {
+      const level = document.getElementById("fitnessLevel").value;
+      const duration = +document.getElementById("workoutDuration").value;
+      const days = +document.getElementById("workoutDays").value;
+      const goal = document.getElementById("primaryGoal").value;
+
+      const targetAreas = Array.from(document.querySelectorAll('#targetAreas input:checked')).map(cb => cb.value);
+      const equipment = Array.from(document.querySelectorAll('#availableEquipment input:checked')).map(cb => cb.value);
+      const health = Array.from(document.querySelectorAll('#healthConditions input:checked')).map(cb => cb.value);
+
+      let plan = "";
+      for (let i = 0; i < days; i++) {
+        const dayName = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][i];
+        plan += `<h3>${dayName} - Day ${i + 1}</h3>
+          <strong>Warm-up</strong><br>Jumping Jacks, Arm Circles, Light Jog<br><br>
+          <table>
+            <tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>Equipment</th><th>Target Area</th></tr>
+            <tr><td>Push-ups</td><td>3</td><td>12</td><td>45s</td><td>None</td><td>Chest</td></tr>
+            <tr><td>Squats</td><td>3</td><td>15</td><td>45s</td><td>None</td><td>Legs</td></tr>
+            <tr><td>Plank</td><td>2</td><td>30s</td><td>30s</td><td>Yoga Mat</td><td>Core</td></tr>
+          </table><br><hr>`;
+      }
+
+      document.getElementById("planContent").innerHTML = plan;
+      document.getElementById("workoutPlan").style.display = "block";
+      document.getElementById("workoutPlan").scrollIntoView({ behavior: "smooth" });
+
+      showProgress(days, duration);
+      showMealPlan(goal);
+    });
+
+    function showProgress(days, duration) {
+      const completed = days;
+      const calories = days * duration * 5;
+
+      document.getElementById("metrics").innerHTML = `
+        <p><strong>Total Workouts Completed:</strong> ${completed}</p>
+        <p><strong>Estimated Calories Burned:</strong> ${calories} kcal</p>
+        <p><strong>Goal:</strong> Stay consistent and track your progress!</p>
+      `;
+      drawProgressChart();
+      document.getElementById("tracker").style.display = "block";
+    }
+
+    function drawProgressChart() {
+      const ctx = document.getElementById("progressChart").getContext("2d");
+      ctx.clearRect(0, 0, 600, 200);
+      const data = Array.from({ length: 6 }, () => Math.floor(Math.random() * 3) + 1);
+      data.forEach((val, i) => {
+        ctx.fillStyle = "#60a5fa";
+        ctx.fillRect(i * 90 + 40, 200 - val * 40, 40, val * 40);
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][i], i * 90 + 45, 195);
+      });
+    }
+
+    function showMealPlan(goal) {
+      const mealSuggestions = {
+        "Fat Loss": [
+          { name: "Grilled Chicken Salad", macros: "30g protein, 10g carbs, 8g fat" },
+          { name: "Oats with Berries", macros: "10g protein, 35g carbs, 7g fat" }
+        ],
+        "Muscle": [
+          { name: "Chicken with Quinoa", macros: "45g protein, 40g carbs, 10g fat" },
+          { name: "Protein Smoothie", macros: "30g protein, 25g carbs, 15g fat" }
+        ],
+        "Strength": [
+          { name: "Turkey Wrap & Sweet Potato", macros: "40g protein, 35g carbs, 10g fat" }
+        ],
+        "Endurance": [
+          { name: "Banana & Nut Butter", macros: "10g protein, 40g carbs, 15g fat" }
+        ],
+        "General Fitness": [
+          { name: "Buddha Bowl", macros: "25g protein, 45g carbs, 12g fat" }
+        ]
+      };
+      const meals = mealSuggestions[goal] || [];
+      let html = `<p><strong>Nutrition Goal:</strong> ${goal}</p><ul>`;
+      meals.forEach(meal => html += `<li><strong>${meal.name}</strong> — <em>${meal.macros}</em></li>`);
+      html += `</ul><p><strong>Tips:</strong></p>
+      <ul><li>Stay hydrated</li><li>Balance your macros</li><li>Prep meals in advance</li></ul>`;
+      document.getElementById("mealContent").innerHTML = html;
+      document.getElementById("mealPlan").style.display = "block";
+    }
+  </script>
+</body>
+</html>
