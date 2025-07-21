@@ -244,14 +244,7 @@
   </div>
 
   <script>
-    onAuthStateChanged(auth, (user) => {
-  if (user) {
-    document.getElementById("user-email").textContent = user.email;
-  } else {
-    
-    window.location.href = "login.html";
-  }
-});
+   
     const generateBtn = document.getElementById("generateButton");
 
     generateBtn.addEventListener("click", function () {
@@ -338,6 +331,14 @@
       document.getElementById("mealContent").innerHTML = html;
       document.getElementById("mealPlan").style.display = "block";
     }
+     onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("user-email").textContent = user.email;
+  } else {
+    
+    window.location.href = "login.html";
+  }
+});
   </script>
 </body>
 </html>
